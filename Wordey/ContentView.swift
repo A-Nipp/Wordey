@@ -21,15 +21,14 @@ struct ContentView: View {
                 Text("Wordey")
                     .font(.largeTitle)
                 VStack {
-                    HStack {
-                        Spacer()
                         RenderedTextView(rawText: rawText)
-                            .padding()
-                        Spacer()
-                    }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    
                 }
                 .background(Color.white, in: RoundedRectangle(cornerRadius: 5))
                 Spacer()
+                Text("Text Entry")
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 TextEditor(text: $rawText)
                 Spacer()
                 VStack {
