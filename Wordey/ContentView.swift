@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var rawText: String = "**Hi**"
     @State private var isBold: Bool = false
+    @State private var textColor: Color = .primary
     
     
     var body: some View {
@@ -17,27 +18,44 @@ struct ContentView: View {
             Color.gray
                 .opacity(0.3)
                 .ignoresSafeArea()
-            VStack {
+            VStack(spacing: 10) {
                 Text("Wordey")
                     .font(.largeTitle)
+                    .bold()
+                    .padding()
                 VStack {
-                        RenderedTextView(rawText: rawText)
+                    RenderedTextView(rawText: rawText)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    
                 }
                 .background(Color.white, in: RoundedRectangle(cornerRadius: 5))
                 Spacer()
-                Text("Text Entry")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                TextEditor(text: $rawText)
-                Spacer()
-                VStack {
-                    Toggle(isOn: $isBold) {
-                        Text("Hi")
-                    }
+                VStack(alignment: .leading) {
+                    Text("Text Entry")
+                        .font(.subheadline)
+                    TextEditor(text: $rawText)
                 }
+                
+                Spacer()
+                VStack(alignment: .leading) {
+                    Text("Options")
+                        .font(.subheadline)
+                    VStack {
+                        Toggle(isOn: $isBold) {
+                            Text("Hi")
+                        }
+                        Divider()
+                        Toggle(isOn: $isBold) {
+                            Text("Hellow")
+                        }
+                    }
+                    .padding()
+                    .background(Color.white, in: RoundedRectangle(cornerRadius: 5))
+                    
+                }
+                
             }
             .padding(.horizontal)
+            .padding(.bottom, 20)
         }
     }
     
