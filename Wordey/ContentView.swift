@@ -21,11 +21,15 @@ struct ContentView: View {
     }
     
     var body: some View {
-        VStack {
+        Form {
             Text(renderedText)
+            Section("Text Entry") {
+                TextField("Enter text", text: $rawText)
+            }
         }
-        .padding()
     }
+    
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
