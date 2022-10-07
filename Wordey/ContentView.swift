@@ -8,12 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var rawText: String = "**Hi**"
+    
+    private var renderedText: AttributedString {
+        do {
+            let rendered = try AttributedString(
+                markdown: rawText)
+            return rendered
+        } catch {
+            return "Couldn't parse markdown!"
+        }
+    }
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Text(renderedText)
         }
         .padding()
     }
