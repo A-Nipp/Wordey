@@ -11,7 +11,7 @@ struct ContentView: View {
     @State private var rawText: String = "**Hi**"
     @State private var isBold: Bool = false
     @State private var textColor: Color = .primary
-    
+    @State private var textAlignment: HorizontalAlignment = .center
     
     var body: some View {
         ZStack {
@@ -36,22 +36,7 @@ struct ContentView: View {
                 }
                 
                 Spacer()
-                VStack(alignment: .leading) {
-                    Text("Options")
-                        .font(.subheadline)
-                    VStack {
-                        Toggle(isOn: $isBold) {
-                            Text("Hi")
-                        }
-                        Divider()
-                        Toggle(isOn: $isBold) {
-                            Text("Hellow")
-                        }
-                    }
-                    .padding()
-                    .background(Color.white, in: RoundedRectangle(cornerRadius: 5))
-                    
-                }
+                TextOptionsView(isBold: $isBold, textColor: $textColor)
                 
             }
             .padding(.horizontal)
@@ -74,7 +59,8 @@ struct RenderedTextView: View {
     }
     
     var body: some View {
-        Text(renderedText)
+        var out = Text(renderedText)
+        return out
     
 }
 
@@ -83,5 +69,28 @@ struct RenderedTextView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+struct TextOptionsView: View {
+    @Binding var isBold: Bool
+    @Binding var textColor: Color
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Options")
+                .font(.subheadline)
+            VStack {
+                Toggle(isOn: $isBold) {
+                    Text("Hi")
+                }
+                Divider()
+                Toggle(isOn: $isBold) {
+                    Text("Hellow")
+                }
+            }
+            .padding()
+            .background(Color.white, in: RoundedRectangle(cornerRadius: 5))
+            
+        }
     }
 }
