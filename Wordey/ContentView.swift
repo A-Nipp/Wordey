@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var rawText: String = "**Hi**"
     @State private var isBold: Bool = false
+    @State private var isItalicized: Bool = false
     @State private var textColor: FontColor = .black
     @State private var textAlignment: HorizontalAlignment = .center
     
@@ -24,7 +25,7 @@ struct ContentView: View {
                     .bold()
                     .padding()
                 VStack {
-                    RenderedTextView(rawText: rawText, fontColor: textColor)
+                    RenderedTextView(rawText: rawText, fontColor: textColor, isBold: isBold, isItalicized: isItalicized)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
                 .background(Color.white, in: RoundedRectangle(cornerRadius: 5))
@@ -36,7 +37,7 @@ struct ContentView: View {
                 }
                 
                 Spacer()
-                TextOptionsView(isBold: $isBold, textColor: $textColor)
+                TextOptionsView(isBold: $isBold, isItalicized: $isItalicized, textColor: $textColor)
                 
             }
             .padding(.horizontal)
@@ -49,6 +50,8 @@ struct ContentView: View {
 struct RenderedTextView: View {
     let rawText: String
     let fontColor: FontColor
+    let isBold: Bool
+    let isItalicized: Bool
     private var renderedText: AttributedString {
         do {
             let rendered = try AttributedString(
@@ -62,6 +65,12 @@ struct RenderedTextView: View {
     var body: some View {
         var out = Text(renderedText)
         out = out.foregroundColor(fontColor.getColor())
+        if isBold {
+            out = out.bold()
+        }
+        if isItalicized {
+            out = out.italic()
+        }
         return out
     
 }
@@ -76,6 +85,7 @@ struct ContentView_Previews: PreviewProvider {
 
 struct TextOptionsView: View {
     @Binding var isBold: Bool
+    @Binding var isItalicized: Bool
     @Binding var textColor: FontColor
     var body: some View {
         VStack(alignment: .leading) {
@@ -83,7 +93,10 @@ struct TextOptionsView: View {
                 .font(.subheadline)
             VStack {
                 Toggle(isOn: $isBold) {
-                    Text("Hi")
+                    Text("Bold")
+                }
+                Toggle(isOn: $isItalicized) {
+                    Text("Italics")
                 }
                 Divider()
                 Picker("Please choose a color", selection: $textColor) {
