@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1627AC0F28F50EAD00698A82 /* FontColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1627AC0E28F50EAD00698A82 /* FontColor.swift */; };
+		1627AC1228F50F0900698A82 /* VerticalTextAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1627AC1128F50F0900698A82 /* VerticalTextAlignment.swift */; };
+		1627AC1428F50F5200698A82 /* HorizontalTextAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1627AC1328F50F5200698A82 /* HorizontalTextAlignment.swift */; };
+		1627AC1728F5108C00698A82 /* RenderedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1627AC1628F5108C00698A82 /* RenderedTextView.swift */; };
 		16407C7B28F090DE004317C9 /* WordeyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16407C7A28F090DE004317C9 /* WordeyApp.swift */; };
 		16407C7D28F090DE004317C9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16407C7C28F090DE004317C9 /* ContentView.swift */; };
 		16407C7F28F090E0004317C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16407C7E28F090E0004317C9 /* Assets.xcassets */; };
@@ -14,6 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1627AC0E28F50EAD00698A82 /* FontColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontColor.swift; sourceTree = "<group>"; };
+		1627AC1128F50F0900698A82 /* VerticalTextAlignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalTextAlignment.swift; sourceTree = "<group>"; };
+		1627AC1328F50F5200698A82 /* HorizontalTextAlignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalTextAlignment.swift; sourceTree = "<group>"; };
+		1627AC1628F5108C00698A82 /* RenderedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderedTextView.swift; sourceTree = "<group>"; };
 		16407C7728F090DE004317C9 /* Wordey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16407C7A28F090DE004317C9 /* WordeyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordeyApp.swift; sourceTree = "<group>"; };
 		16407C7C28F090DE004317C9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +40,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1627AC1028F50EE700698A82 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				1627AC0E28F50EAD00698A82 /* FontColor.swift */,
+				1627AC1328F50F5200698A82 /* HorizontalTextAlignment.swift */,
+				1627AC1128F50F0900698A82 /* VerticalTextAlignment.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		1627AC1528F5107F00698A82 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				16407C7C28F090DE004317C9 /* ContentView.swift */,
+				1627AC1628F5108C00698A82 /* RenderedTextView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		16407C6E28F090DD004317C9 = {
 			isa = PBXGroup;
 			children = (
@@ -52,7 +79,8 @@
 			isa = PBXGroup;
 			children = (
 				16407C7A28F090DE004317C9 /* WordeyApp.swift */,
-				16407C7C28F090DE004317C9 /* ContentView.swift */,
+				1627AC1528F5107F00698A82 /* Views */,
+				1627AC1028F50EE700698A82 /* Enums */,
 				16407C7E28F090E0004317C9 /* Assets.xcassets */,
 				16407C8028F090E0004317C9 /* Preview Content */,
 			);
@@ -138,6 +166,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				16407C7D28F090DE004317C9 /* ContentView.swift in Sources */,
+				1627AC1428F50F5200698A82 /* HorizontalTextAlignment.swift in Sources */,
+				1627AC0F28F50EAD00698A82 /* FontColor.swift in Sources */,
+				1627AC1228F50F0900698A82 /* VerticalTextAlignment.swift in Sources */,
+				1627AC1728F5108C00698A82 /* RenderedTextView.swift in Sources */,
 				16407C7B28F090DE004317C9 /* WordeyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

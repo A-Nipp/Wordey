@@ -50,74 +50,12 @@ struct ContentView: View {
     
 }
 
-enum HorizontalTextAlignment: String, CaseIterable {
-    case leading = "Leading"
-    case center = "Center"
-    case trailing = "Trailing"
-    
-    public var systemAlignment: HorizontalAlignment {
-        switch self {
-        case .leading:
-            return .leading
-        case .center:
-            return .center
-        case .trailing:
-            return .trailing
-        }
+extension ContentView {
+    public static var example: some View {
+        return ContentView()
     }
 }
 
-enum VerticalTextAlignment: String, CaseIterable {
-    case top = "Top"
-    case center = "Center"
-    case bottom = "Bottom"
-    
-    
-    public var systemAlignment: VerticalAlignment {
-        switch self {
-        case .top:
-            return .top
-        case .center:
-            return .center
-        case .bottom:
-            return .bottom
-        }
-    }
-}
-
-
-struct RenderedTextView: View {
-    let rawText: String
-    let fontColor: FontColor
-    let isBold: Bool
-    let isItalicized: Bool
-    let fontSize: CGFloat
-    private var renderedText: AttributedString {
-        do {
-            let rendered = try AttributedString(
-                markdown: rawText)
-            return rendered
-        } catch {
-            return "Couldn't parse markdown!"
-        }
-    }
-    
-    var body: some View {
-        var out = Text(renderedText)
-        out = out.font(.system(size: fontSize))
-        out = out.foregroundColor(fontColor.getColor())
-        if isBold {
-            out = out.bold()
-        }
-        if isItalicized {
-            out = out.italic()
-        }
-        return out
-    
-}
-
-
-}
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
@@ -198,32 +136,3 @@ struct TextOptionsView: View {
     }
 }
 
-enum FontColor: CaseIterable {
-    case black, blue, green, red
-    func getColor() -> Color {
-        switch self {
-        case .red:
-            return Color.red
-        case .black:
-            return Color.black
-        case .blue:
-            return Color.blue
-        case .green:
-            return Color.green
-        }
-    }
-    
-    var stringValue: String {
-        switch self {
-        case .red:
-            return "Red"
-        case .black:
-            return "Black"
-        case .blue:
-            return "Blue"
-        case .green:
-            return "Green"
-        }
-    }
-    
-}
