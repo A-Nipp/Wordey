@@ -12,7 +12,7 @@ struct ContentView: View {
     @State private var isBold: Bool = false
     @State private var isItalicized: Bool = false
     @State private var textColor: FontColor = .black
-    @State private var textAlignment: HorizontalAlignment = .center
+    @State private var textAlignment: TextAlignment = .center
     
     var body: some View {
         ZStack {
@@ -26,7 +26,8 @@ struct ContentView: View {
                     .padding()
                 VStack {
                     RenderedTextView(rawText: rawText, fontColor: textColor, isBold: isBold, isItalicized: isItalicized)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .padding()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: textAlignment.systemAlignment)
                 }
                 .background(Color.white, in: RoundedRectangle(cornerRadius: 5))
                 Spacer()
@@ -37,7 +38,7 @@ struct ContentView: View {
                 }
                 
                 Spacer()
-                TextOptionsView(isBold: $isBold, isItalicized: $isItalicized, textColor: $textColor)
+                TextOptionsView(isBold: $isBold, isItalicized: $isItalicized, textColor: $textColor, alignment: $textAlignment)
                 
             }
             .padding(.horizontal)
@@ -46,6 +47,42 @@ struct ContentView: View {
     }
     
 }
+
+enum TextAlignment: String, CaseIterable {
+    case topLeading = "Top Leading"
+    case top = "Top Center"
+    case topTrailing = "Top Trailing"
+    case leading = "Leading"
+    case center = "Center"
+    case trailing = "Trailing"
+    case bottomLeading = "Bottom Leading"
+    case bottom = "Bottom Center"
+    case bottomTrailing = "Bottom Trailing"
+    
+    public var systemAlignment: Alignment {
+        switch self {
+        case .topLeading:
+            return Alignment.topLeading // This is the same as all the ones below. Those work because Swift is expecting a return type of Alignment
+        case .top:
+            return .top
+        case .topTrailing:
+            return .topTrailing
+        case .leading:
+            return .topTrailing
+        case .center:
+            return .center
+        case .trailing:
+            return .trailing
+        case .bottomLeading:
+            return .bottomLeading
+        case .bottom:
+            return .bottom
+        case .bottomTrailing:
+            return .bottomTrailing
+        }
+    }
+}
+
 
 struct RenderedTextView: View {
     let rawText: String
@@ -87,6 +124,7 @@ struct TextOptionsView: View {
     @Binding var isBold: Bool
     @Binding var isItalicized: Bool
     @Binding var textColor: FontColor
+    @Binding var alignment: TextAlignment
     var body: some View {
         VStack(alignment: .leading) {
             Text("Options")
@@ -105,6 +143,13 @@ struct TextOptionsView: View {
                     }
                 }
                 .pickerStyle(.segmented)
+                Divider()
+                Picker("Choose an alignment", selection: $alignment) {
+                    ForEach(TextAlignment.allCases, id: \.self) {
+                        Text($0.rawValue)
+                    }
+                }
+                .pickerStyle(.menu)
             }
             .padding()
             .background(Color.white, in: RoundedRectangle(cornerRadius: 5))
