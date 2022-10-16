@@ -27,7 +27,6 @@ struct ContentView: View {
                         Text("Wordey")
                             .font(.largeTitle)
                             .bold()
-                        .padding()
                         Spacer()
                         NavigationLink {
                             TextOptionsView(rawText: rawText, isBold: $isBold, isItalicized: $isItalicized, textColor: $textColor, vAlignment: $vAlignment, hAlignment: $hAlignment, fontSize: $fontSize)
@@ -39,6 +38,7 @@ struct ContentView: View {
                                 .foregroundColor(.black)
                         }
                     }
+                    .padding(.bottom)
                     VStack {
                         RenderedTextView(rawText: rawText, fontColor: textColor, isBold: isBold, isItalicized: isItalicized, fontSize: fontSize)
                             .padding()
