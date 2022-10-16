@@ -13,3 +13,4 @@ Users can change various settings about the text displayed including: color, fon
 <img src="word_styling.gif" alt="drawing" width="200"/>
 </div>
 
+Wordey was built as a demo of SwiftUI principles such as @Binding, @State, and view modifiers.
