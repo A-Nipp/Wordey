@@ -27,8 +27,6 @@ struct ContentView: View {
                         } label: {
                             Image(systemName: "gear")
                                 .font(.largeTitle)
-//                                .resizable()
-//                                .font(.caption)
                                 .foregroundColor(.black)
                         }
                     }
