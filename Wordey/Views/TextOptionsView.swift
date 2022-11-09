@@ -8,23 +8,17 @@
 import SwiftUI
 
 struct TextOptionsView: View {
-    let rawText: String
     let previewHeightFraction = 0.3
-    @Binding var isBold: Bool
-    @Binding var isItalicized: Bool
-    @Binding var textColor: FontColor
-    @Binding var vAlignment: VerticalTextAlignment
-    @Binding var hAlignment: HorizontalTextAlignment
-    @Binding var fontSize: CGFloat
+    @ObservedObject var vm: WordeyViewModel
     var body: some View {
         ZStack {
             Color(UIColor.systemGroupedBackground)
                 .ignoresSafeArea()
             
             VStack(spacing: 30) {
-                RenderedTextView(rawText: rawText, fontColor: textColor, isBold: isBold, isItalicized: isItalicized, fontSize: fontSize)
+                RenderedTextView(model: vm.model)
                     .padding()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: Alignment(horizontal: hAlignment.systemAlignment, vertical: vAlignment.systemAlignment))
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: Alignment(horizontal: vm.model.hAlignment.systemAlignment, vertical: vm.model.vAlignment.systemAlignment))
                     .background(Color.white, in: RoundedRectangle(cornerRadius: 5))
                 
                 VStack(alignment: .leading) {
@@ -33,15 +27,15 @@ struct TextOptionsView: View {
                         .foregroundColor(.secondary)
                         .padding(.leading)
                     VStack {
-                        Toggle(isOn: $isBold) {
+                        Toggle(isOn: $vm.model.isBold) {
                             Text("Bold")
                         }
                         Divider()
-                        Toggle(isOn: $isItalicized) {
+                        Toggle(isOn: $vm.model.isItalicized) {
                             Text("Italics")
                         }
                         Divider()
-                        Picker("Please choose a color", selection: $textColor) {
+                        Picker("Please choose a color", selection: $vm.model.textColor) {
                             ForEach(FontColor.allCases, id: \.self) {
                                 Text($0.stringValue)
                             }
@@ -49,7 +43,7 @@ struct TextOptionsView: View {
                         .pickerStyle(.segmented)
                         Divider()
                         Slider(
-                            value: $fontSize,
+                            value: $vm.model.fontSize,
                             in: 1...100,
                             step: 1
                         ) {
@@ -73,7 +67,7 @@ struct TextOptionsView: View {
                     VStack {
                         HStack {
                             Text("Horizontal")
-                            Picker("Horizontal", selection: $hAlignment) {
+                            Picker("Horizontal", selection: $vm.model.hAlignment) {
                                 ForEach(HorizontalTextAlignment.allCases, id: \.self) {
                                     Text($0.rawValue)
                                 }
@@ -84,7 +78,7 @@ struct TextOptionsView: View {
                         
                         HStack {
                             Text("Vertical")
-                            Picker("Vertical", selection: $vAlignment) {
+                            Picker("Vertical", selection: $vm.model.vAlignment) {
                                 ForEach(VerticalTextAlignment.allCases, id: \.self) {
                                     Text($0.rawValue)
                                 }
@@ -108,6 +102,6 @@ struct TextOptionsView: View {
 
 struct TextOptionsView_Previews: PreviewProvider {
     static var previews: some View {
-        TextOptionsView(rawText: "Hello", isBold: .constant(true), isItalicized: .constant(true), textColor: .constant(FontColor.red), vAlignment: .constant(.center), hAlignment: .constant(.center), fontSize: .constant(20))
+        TextOptionsView(vm: WordeyViewModel())
     }
 }
