@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    // MARK: Fix this monstrosity
     @State private var rawText: String = "**Hi**"
     @State private var isBold: Bool = false
     @State private var isItalicized: Bool = false

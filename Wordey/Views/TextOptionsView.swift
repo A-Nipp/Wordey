@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct TextOptionsView: View {
+    ///  The text that is passed from ContentView. It is a let constant here because there is no way to modify it in this screen.
     let rawText: String
+    // MARK: Fix this. Too many bindings :(
     @Binding var isBold: Bool
     @Binding var isItalicized: Bool
     @Binding var textColor: FontColor
