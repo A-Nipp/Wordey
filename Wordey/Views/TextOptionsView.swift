@@ -9,7 +9,6 @@ import SwiftUI
 
 struct TextOptionsView: View {
     let rawText: String
-    let previewHeightFraction = 0.3
     @Binding var isBold: Bool
     @Binding var isItalicized: Bool
     @Binding var textColor: FontColor
