@@ -13,7 +13,7 @@ struct TextOptionsView: View {
     // MARK: Fix this. Too many bindings :(
     @Binding var isBold: Bool
     @Binding var isItalicized: Bool
-    @Binding var textColor: FontColor
+    @Binding var fontColor: FontColor
     @Binding var vAlignment: VerticalTextAlignment
     @Binding var hAlignment: HorizontalTextAlignment
     @Binding var fontSize: CGFloat
@@ -23,7 +23,7 @@ struct TextOptionsView: View {
                 .ignoresSafeArea()
             
             VStack(spacing: 30) {
-                RenderedTextView(rawText: rawText, fontColor: textColor, isBold: isBold, isItalicized: isItalicized, fontSize: fontSize)
+                RenderedTextView(rawText: rawText, fontColor: fontColor, isBold: isBold, isItalicized: isItalicized, fontSize: fontSize)
                     .padding()
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: Alignment(horizontal: hAlignment.systemAlignment, vertical: vAlignment.systemAlignment))
                     .background(Color.white, in: RoundedRectangle(cornerRadius: 5))
@@ -42,7 +42,7 @@ struct TextOptionsView: View {
                             Text("Italics")
                         }
                         Divider()
-                        Picker("Please choose a color", selection: $textColor) {
+                        Picker("Please choose a color", selection: $fontColor) {
                             ForEach(FontColor.allCases, id: \.self) {
                                 Text($0.stringValue)
                             }
@@ -109,6 +109,6 @@ struct TextOptionsView: View {
 
 struct TextOptionsView_Previews: PreviewProvider {
     static var previews: some View {
-        TextOptionsView(rawText: "Hello", isBold: .constant(true), isItalicized: .constant(true), textColor: .constant(FontColor.red), vAlignment: .constant(.center), hAlignment: .constant(.center), fontSize: .constant(20))
+        TextOptionsView(rawText: "Hello", isBold: .constant(true), isItalicized: .constant(true), fontColor: .constant(FontColor.red), vAlignment: .constant(.center), hAlignment: .constant(.center), fontSize: .constant(20))
     }
 }
