@@ -9,10 +9,13 @@ import Foundation
 
 class WordeyViewModel: ObservableObject {
     @Published var model: WordeyData = WordeyData.example
-    @Published var presets = [WordeyData]()
+    var presets = [WordeyPreset]()
     
     func savePreset() -> Void {
-        presets.append(model)
+        presets.append(WordeyPreset(data: model))
+    }
+    func setPreset(newPreset: WordeyPreset) -> Void {
+        model = newPreset.data
     }
     
     

@@ -7,9 +7,7 @@
 
 import Foundation
 
-struct WordeyData: Identifiable {
-    let id = UUID()
-    var presetName: String // The name of this preset (e.g. "Green italics")
+struct WordeyData {
     var rawText: String
     var isBold: Bool
     var isItalicized: Bool
@@ -21,6 +19,6 @@ struct WordeyData: Identifiable {
 
 extension WordeyData {
     static var example: WordeyData {
-        WordeyData(presetName: "Example preset", rawText: "Example", isBold: false, isItalicized: true, textColor: .green, hAlignment: .center, vAlignment: .top)
+        WordeyData(rawText: "Example", isBold: false, isItalicized: true, textColor: .green, hAlignment: .center, vAlignment: .top)
     }
 }

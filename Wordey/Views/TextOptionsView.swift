@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct TextOptionsView: View {
-    let previewHeightFraction = 0.3
     @ObservedObject var vm: WordeyViewModel
     var body: some View {
         ZStack {
@@ -94,6 +93,16 @@ struct TextOptionsView: View {
             }
             .padding(.horizontal, 20.0)
         }
+        .toolbar {
+            ToolbarItemGroup(placement: .bottomBar) {
+                NavigationLink("Load Preset") {
+                    PresetListView(vm: vm)
+                }
+                Button("Save Preset") {
+                    vm.savePreset()
+                }
+            }
+        }
         
         
     }
@@ -102,6 +111,8 @@ struct TextOptionsView: View {
 
 struct TextOptionsView_Previews: PreviewProvider {
     static var previews: some View {
-        TextOptionsView(vm: WordeyViewModel())
+        NavigationStack {
+            TextOptionsView(vm: WordeyViewModel())
+        }
     }
 }
