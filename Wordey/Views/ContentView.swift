@@ -30,7 +30,7 @@ struct ContentView: View {
                             .bold()
                         Spacer()
                         NavigationLink {
-                            TextOptionsView(rawText: rawText, isBold: $isBold, isItalicized: $isItalicized, textColor: $textColor, vAlignment: $vAlignment, hAlignment: $hAlignment, fontSize: $fontSize)
+                            TextOptionsView(rawText: rawText, isBold: $isBold, isItalicized: $isItalicized, fontColor: $textColor, vAlignment: $vAlignment, hAlignment: $hAlignment, fontSize: $fontSize)
                         } label: {
                             Image(systemName: "gear")
                                 .font(.largeTitle)
