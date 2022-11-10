@@ -8,14 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    // MARK: Fix this monstrosity
-    @State private var rawText: String = "**Hi**"
-    @State private var isBold: Bool = false
-    @State private var isItalicized: Bool = false
-    @State private var textColor: FontColor = .black
-    @State private var hAlignment: HorizontalTextAlignment = .center
-    @State private var vAlignment: VerticalTextAlignment = .center
-    @State private var fontSize: CGFloat = 16
+    @StateObject var vm = WordeyViewModel()
     
     var body: some View {
         NavigationStack {
@@ -30,27 +23,25 @@ struct ContentView: View {
                             .bold()
                         Spacer()
                         NavigationLink {
-                            TextOptionsView(rawText: rawText, isBold: $isBold, isItalicized: $isItalicized, fontColor: $textColor, vAlignment: $vAlignment, hAlignment: $hAlignment, fontSize: $fontSize)
+                            TextOptionsView(vm: vm)
                         } label: {
                             Image(systemName: "gear")
                                 .font(.largeTitle)
-//                                .resizable()
-//                                .font(.caption)
                                 .foregroundColor(.black)
                         }
                     }
                     .padding(.bottom)
                     VStack {
-                        RenderedTextView(rawText: rawText, fontColor: textColor, isBold: isBold, isItalicized: isItalicized, fontSize: fontSize)
+                        RenderedTextView(model: vm.model)
                             .padding()
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: Alignment(horizontal: hAlignment.systemAlignment, vertical: vAlignment.systemAlignment))
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: Alignment(horizontal: vm.model.hAlignment.systemAlignment, vertical: vm.model.vAlignment.systemAlignment))
                     }
                     .background(Color.white, in: RoundedRectangle(cornerRadius: 5))
                     Spacer()
                     VStack(alignment: .leading) {
                         Text("Text Entry")
                             .font(.subheadline)
-                        TextEditor(text: $rawText)
+                        TextEditor(text: $vm.model.rawText)
                             .cornerRadius(5)
                     }
                     

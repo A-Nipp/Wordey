@@ -8,24 +8,16 @@
 import SwiftUI
 
 struct TextOptionsView: View {
-    ///  The text that is passed from ContentView. It is a let constant here because there is no way to modify it in this screen.
-    let rawText: String
-    // MARK: Fix this. Too many bindings :(
-    @Binding var isBold: Bool
-    @Binding var isItalicized: Bool
-    @Binding var fontColor: FontColor
-    @Binding var vAlignment: VerticalTextAlignment
-    @Binding var hAlignment: HorizontalTextAlignment
-    @Binding var fontSize: CGFloat
+    @ObservedObject var vm: WordeyViewModel
     var body: some View {
         ZStack {
             Color(UIColor.systemGroupedBackground)
                 .ignoresSafeArea()
             
             VStack(spacing: 30) {
-                RenderedTextView(rawText: rawText, fontColor: fontColor, isBold: isBold, isItalicized: isItalicized, fontSize: fontSize)
+                RenderedTextView(model: vm.model)
                     .padding()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: Alignment(horizontal: hAlignment.systemAlignment, vertical: vAlignment.systemAlignment))
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: Alignment(horizontal: vm.model.hAlignment.systemAlignment, vertical: vm.model.vAlignment.systemAlignment))
                     .background(Color.white, in: RoundedRectangle(cornerRadius: 5))
                 
                 VStack(alignment: .leading) {
@@ -34,15 +26,15 @@ struct TextOptionsView: View {
                         .foregroundColor(.secondary)
                         .padding(.leading)
                     VStack {
-                        Toggle(isOn: $isBold) {
+                        Toggle(isOn: $vm.model.isBold) {
                             Text("Bold")
                         }
                         Divider()
-                        Toggle(isOn: $isItalicized) {
+                        Toggle(isOn: $vm.model.isItalicized) {
                             Text("Italics")
                         }
                         Divider()
-                        Picker("Please choose a color", selection: $fontColor) {
+                        Picker("Please choose a color", selection: $vm.model.textColor) {
                             ForEach(FontColor.allCases, id: \.self) {
                                 Text($0.stringValue)
                             }
@@ -50,7 +42,7 @@ struct TextOptionsView: View {
                         .pickerStyle(.segmented)
                         Divider()
                         Slider(
-                            value: $fontSize,
+                            value: $vm.model.fontSize,
                             in: 1...100,
                             step: 1
                         ) {
@@ -74,7 +66,7 @@ struct TextOptionsView: View {
                     VStack {
                         HStack {
                             Text("Horizontal")
-                            Picker("Horizontal", selection: $hAlignment) {
+                            Picker("Horizontal", selection: $vm.model.hAlignment) {
                                 ForEach(HorizontalTextAlignment.allCases, id: \.self) {
                                     Text($0.rawValue)
                                 }
@@ -85,7 +77,7 @@ struct TextOptionsView: View {
                         
                         HStack {
                             Text("Vertical")
-                            Picker("Vertical", selection: $vAlignment) {
+                            Picker("Vertical", selection: $vm.model.vAlignment) {
                                 ForEach(VerticalTextAlignment.allCases, id: \.self) {
                                     Text($0.rawValue)
                                 }
@@ -101,6 +93,16 @@ struct TextOptionsView: View {
             }
             .padding(.horizontal, 20.0)
         }
+        .toolbar {
+            ToolbarItemGroup(placement: .bottomBar) {
+                NavigationLink("Load Preset") {
+                    PresetListView(vm: vm)
+                }
+                Button("Save Preset") {
+                    vm.savePreset()
+                }
+            }
+        }
         
         
     }
@@ -109,6 +111,8 @@ struct TextOptionsView: View {
 
 struct TextOptionsView_Previews: PreviewProvider {
     static var previews: some View {
-        TextOptionsView(rawText: "Hello", isBold: .constant(true), isItalicized: .constant(true), fontColor: .constant(FontColor.red), vAlignment: .constant(.center), hAlignment: .constant(.center), fontSize: .constant(20))
+        NavigationStack {
+            TextOptionsView(vm: WordeyViewModel())
+        }
     }
 }

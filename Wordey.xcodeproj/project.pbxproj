@@ -15,6 +15,10 @@
 		16407C7D28F090DE004317C9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16407C7C28F090DE004317C9 /* ContentView.swift */; };
 		16407C7F28F090E0004317C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16407C7E28F090E0004317C9 /* Assets.xcassets */; };
 		16407C8228F090E0004317C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16407C8128F090E0004317C9 /* Preview Assets.xcassets */; };
+		16A0921F291B4F57008CC0E4 /* WordeyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A0921E291B4F57008CC0E4 /* WordeyData.swift */; };
+		16A09223291B508E008CC0E4 /* WordeyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A09222291B508E008CC0E4 /* WordeyViewModel.swift */; };
+		16A09225291B5526008CC0E4 /* PresetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A09224291B5526008CC0E4 /* PresetListView.swift */; };
+		16A09227291B5984008CC0E4 /* WordeyPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A09226291B5984008CC0E4 /* WordeyPreset.swift */; };
 		16EF5EF328FC5F5400E3E31B /* TextOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EF5EF228FC5F5400E3E31B /* TextOptionsView.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +32,10 @@
 		16407C7C28F090DE004317C9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		16407C7E28F090E0004317C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		16407C8128F090E0004317C9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		16A0921E291B4F57008CC0E4 /* WordeyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordeyData.swift; sourceTree = "<group>"; };
+		16A09222291B508E008CC0E4 /* WordeyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordeyViewModel.swift; sourceTree = "<group>"; };
+		16A09224291B5526008CC0E4 /* PresetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetListView.swift; sourceTree = "<group>"; };
+		16A09226291B5984008CC0E4 /* WordeyPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordeyPreset.swift; sourceTree = "<group>"; };
 		16EF5EF228FC5F5400E3E31B /* TextOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOptionsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				16407C7C28F090DE004317C9 /* ContentView.swift */,
+				16A09224291B5526008CC0E4 /* PresetListView.swift */,
 				1627AC1628F5108C00698A82 /* RenderedTextView.swift */,
 				16EF5EF228FC5F5400E3E31B /* TextOptionsView.swift */,
 			);
@@ -82,6 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				16407C7A28F090DE004317C9 /* WordeyApp.swift */,
+				16A09221291B507B008CC0E4 /* ViewModel */,
+				16A0921D291B4EBF008CC0E4 /* Model */,
 				1627AC1528F5107F00698A82 /* Views */,
 				1627AC1028F50EE700698A82 /* Enums */,
 				16407C7E28F090E0004317C9 /* Assets.xcassets */,
@@ -96,6 +107,23 @@
 				16407C8128F090E0004317C9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		16A0921D291B4EBF008CC0E4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				16A0921E291B4F57008CC0E4 /* WordeyData.swift */,
+				16A09226291B5984008CC0E4 /* WordeyPreset.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		16A09221291B507B008CC0E4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				16A09222291B508E008CC0E4 /* WordeyViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,10 +198,14 @@
 			files = (
 				16EF5EF328FC5F5400E3E31B /* TextOptionsView.swift in Sources */,
 				16407C7D28F090DE004317C9 /* ContentView.swift in Sources */,
+				16A0921F291B4F57008CC0E4 /* WordeyData.swift in Sources */,
 				1627AC1428F50F5200698A82 /* HorizontalTextAlignment.swift in Sources */,
 				1627AC0F28F50EAD00698A82 /* FontColor.swift in Sources */,
 				1627AC1228F50F0900698A82 /* VerticalTextAlignment.swift in Sources */,
+				16A09227291B5984008CC0E4 /* WordeyPreset.swift in Sources */,
 				1627AC1728F5108C00698A82 /* RenderedTextView.swift in Sources */,
+				16A09225291B5526008CC0E4 /* PresetListView.swift in Sources */,
+				16A09223291B508E008CC0E4 /* WordeyViewModel.swift in Sources */,
 				16407C7B28F090DE004317C9 /* WordeyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
